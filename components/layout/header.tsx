@@ -61,7 +61,7 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'text-sm font-medium transition-colors hover:text-primary relative',
+                  'text-sm font-semibold transition-colors hover:text-primary relative',
                   pathname === item.href
                     ? 'text-primary'
                     : 'text-muted-foreground'
@@ -119,7 +119,7 @@ export function Header() {
                     key={item.name}
                     href={item.href}
                     className={cn(
-                      'block px-3 py-2 text-base font-medium rounded-xl transition-colors',
+                      'block px-3 py-2 text-base font-semibold rounded-xl transition-colors',
                       pathname === item.href
                         ? 'text-primary bg-primary/10'
                         : 'text-muted-foreground hover:text-primary hover:bg-primary/5'

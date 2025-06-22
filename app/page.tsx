@@ -16,6 +16,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 const services = [
   {
@@ -36,6 +39,16 @@ const services = [
     icon: '✨',
     features: ['Post-construction', 'Carpet cleaning', 'Window cleaning']
   }
+];
+
+const formServices = [
+  'Regular House Cleaning',
+  'Deep Cleaning Service',
+  'Office Cleaning',
+  'Move-in/Move-out Cleaning',
+  'Post-Construction Cleanup',
+  'Retail Space Cleaning',
+  'Other Services'
 ];
 
 const testimonials = [
@@ -59,6 +72,13 @@ const testimonials = [
     content: 'Professional, thorough, and trustworthy. SparklePro handles all our move-out cleanings with exceptional results.',
     rating: 5,
     image: 'https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+  },
+  {
+    name: 'David Kim',
+    role: 'Restaurant Owner',
+    content: 'The SparklePro team is always on time and leaves our restaurant spotless. Highly recommended for any business!',
+    rating: 5,
+    image: 'https://images.pexels.com/photos/1707828/pexels-photo-1707828.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
   }
 ];
 
@@ -133,7 +153,7 @@ export default function Home() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 pb-8">
+      <section className="relative min-h-screen md:min-h-[400px] flex items-center justify-center overflow-hidden pt-8 pb-8 md:pt-4 md:pb-4 lg:pt-8 lg:pb-8">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-blue-950 dark:via-background dark:to-blue-950" />
@@ -177,8 +197,8 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 text-left">
+        <div className="mx-auto px-2 md:px-4 lg:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12 text-left">
             <div className="flex-1 min-w-[300px] md:pr-8">
               <motion.h1 
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8 leading-tight"
@@ -207,12 +227,12 @@ export default function Home() {
               </motion.p>
             </div>
             {/* Quick Quote Form */}
-            <motion.div
+              <motion.div 
               className="flex-1 min-w-[320px] max-w-lg w-full mx-auto mb-12 bg-white/80 dark:bg-black/40 rounded-xl p-6 shadow-2xl shadow-black/40 dark:shadow-black/70 backdrop-blur-md"
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: 'easeOut' }}
-            >
+              >
               <h3 className="text-2xl font-bold mb-6 text-center text-foreground">Contact Us</h3>
               <Form {...heroForm}>
                 <form onSubmit={heroForm.handleSubmit(onHeroSubmit)} className="space-y-4">
@@ -271,9 +291,9 @@ export default function Home() {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent className="rounded-xl">
-                              {services.map((service) => (
-                                <SelectItem key={service.title} value={service.title}>
-                                  {service.title}
+                              {formServices.map((service) => (
+                                <SelectItem key={service} value={service}>
+                                  {service}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -314,64 +334,64 @@ export default function Home() {
                     ) : (
                       <>Request a Quote</>
                     )}
-                  </Button>
+                </Button>
                 </form>
               </Form>
-            </motion.div>
+              </motion.div>
           </div>
 
-          {/* Features Row */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            {features.map((feature, index) => (
+              {/* Features Row */}
               <motion.div
-                key={index}
-                className="flex items-center space-x-3 p-4 bg-white/50 dark:bg-black/20 backdrop-blur-sm rounded-xl border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="bg-primary/10 rounded-lg p-2">
-                  <feature.icon className="h-5 w-5 text-primary" />
-                </div>
-                <div className="text-left">
-                  <div className="font-semibold text-sm">{feature.title}</div>
-                  <div className="text-xs text-muted-foreground">{feature.description}</div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                {features.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex items-center space-x-3 p-4 bg-white/50 dark:bg-black/20 backdrop-blur-sm rounded-xl border border-white/20"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="bg-primary/10 rounded-lg p-2">
+                      <feature.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <div className="font-semibold text-sm">{feature.title}</div>
+                      <div className="text-xs text-muted-foreground">{feature.description}</div>
+                    </div>
+                  </motion.div>
+                ))}
+            </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-          >
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={index} 
-                className="text-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="bg-primary/10 rounded-xl p-3 w-fit mx-auto mb-3">
-                  <stat.icon className="h-8 w-8 text-primary" />
-                </div>
-                <div className="text-2xl md:text-3xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+            {/* Trust Indicators */}
+            <motion.div
+              className="grid grid-cols-2 md:grid-cols-4 gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+            >
+              {stats.map((stat, index) => (
+                <motion.div 
+                  key={index} 
+                  className="text-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="bg-primary/10 rounded-xl p-3 w-fit mx-auto mb-3">
+                    <stat.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="text-2xl md:text-3xl font-bold text-foreground">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-[#101828] text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-[#101828]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16 text-white"
@@ -379,10 +399,10 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-background mb-4 opacity-90">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 opacity-90">
               Our Services
             </h2>
-            <p className="text-xl text-muted-background max-w-2xl mx-auto opacity-90">
+            <p className="text-xl text-white/80 max-w-2xl mx-auto opacity-90">
               From regular maintenance to specialized cleaning, we have the expertise 
               to handle all your cleaning needs.
             </p>
@@ -447,40 +467,61 @@ export default function Home() {
 
           {/* Slideshow */}
           <div className="relative max-w-2xl mx-auto">
-            <motion.div
-              key={testimonialIndex}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Card className="h-full rounded-xl shadow-2xl shadow-black/40 dark:shadow-black/70">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonials[testimonialIndex].rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground mb-4 italic">
-                    "{testimonials[testimonialIndex].content}"
-                  </p>
-                  <div className="flex items-center">
-                    <div className="relative w-10 h-10 mr-3">
-                      <Image
-                        src={testimonials[testimonialIndex].image}
-                        alt={testimonials[testimonialIndex].name}
-                        fill
-                        className="rounded-full object-cover"
-                      />
+            <div className="flex items-center justify-between mb-4 gap-4">
+              <button
+                aria-label="Previous testimonial"
+                onClick={() => setTestimonialIndex((testimonialIndex - 1 + testimonials.length) % testimonials.length)}
+                className="p-2 rounded-full bg-muted hover:bg-primary/20 transition-colors mx-4"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </button>
+              <motion.div
+                key={testimonialIndex}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.6 }}
+                className="flex-1"
+              >
+                <Card className="h-full rounded-xl shadow-2xl shadow-black/40 dark:shadow-black/70">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      {[...Array(testimonials[testimonialIndex].rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      ))}
                     </div>
-                    <div>
-                      <div className="font-semibold">{testimonials[testimonialIndex].name}</div>
-                      <div className="text-sm text-muted-foreground">{testimonials[testimonialIndex].role}</div>
+                    <p className="text-muted-foreground mb-4 italic">
+                      "{testimonials[testimonialIndex].content}"
+                    </p>
+                    <div className="flex items-center">
+                      <div className="relative w-10 h-10 mr-3">
+                        <Image
+                          src={testimonials[testimonialIndex].image}
+                          alt={testimonials[testimonialIndex].name}
+                          fill
+                          className="rounded-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="font-semibold">{testimonials[testimonialIndex].name}</div>
+                        <div className="text-sm text-muted-foreground">{testimonials[testimonialIndex].role}</div>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+              <button
+                aria-label="Next testimonial"
+                onClick={() => setTestimonialIndex((testimonialIndex + 1) % testimonials.length)}
+                className="p-2 rounded-full bg-muted hover:bg-primary/20 transition-colors mx-4"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
+            </div>
             {/* Dots navigation */}
             <div className="flex justify-center gap-2 mt-6">
               {testimonials.map((_, idx) => (
@@ -513,12 +554,20 @@ export default function Home() {
               Get your free quote today and see why we're the preferred choice.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="default" asChild className="text-lg px-8 py-6 rounded-xl">
+              <Button
+                size="default"
+                asChild
+                className="text-lg px-7 py-4 rounded-xl font-semibold btn-hover-lift"
+              >
                 <Link href="/contact">
                   Get Your Free Quote <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="default" asChild className="text-lg px-8 py-6 rounded-xl">
+              <Button
+                size="default"
+                asChild
+                className="text-lg px-7 py-4 rounded-xl font-semibold btn-hover-lift"
+              >
                 <Link href="/gallery">View Our Work</Link>
               </Button>
             </div>

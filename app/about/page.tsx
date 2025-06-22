@@ -80,7 +80,7 @@ const stats = [
 export default function About() {
   return (
     <div className="pt-24 pb-16">
-      {/* Our Story Section (moved up) */}
+      {/* Our Story Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -192,7 +192,7 @@ export default function About() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-[#101828] text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-[#101828]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16 text-white"
@@ -200,10 +200,10 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Meet Our Team
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
               The dedicated professionals who make SparklePro the trusted choice for 
               cleaning services.
             </p>
